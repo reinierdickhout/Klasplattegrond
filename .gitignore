@@ -1,0 +1,22 @@
+# Afhankelijkheden en build-output
+node_modules
+dist
+src-tauri/target
+src-tauri/gen
+
+# --- AVG: leerlinggegevens horen NOOIT in versiebeheer ---
+# data/ bevat klassen.json, lessen.json, lokalen.json met namen van studenten.
+# Iedereen krijgt lokaal een eigen (lege) data-map; zie README.md > Aan de slag.
+data/
+*.json.bak
+*.json.tmp
+
+# Machine-specifieke instellingen (nooit committen)
+*.local
+
+# Editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+*.log

@@ -1,0 +1,29 @@
+{
+  "name": "klasplattegrond",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev:fe": "vite",
+    "build:fe": "tsc && vite build",
+    "test": "node --experimental-strip-types --test src/tests/*.test.ts",
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build --no-bundle"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "~2.10.1",
+    "@tauri-apps/plugin-dialog": "~2.6.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "read-excel-file": "^5.8.8"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react-swc": "^4.2.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1"
+  }
+}

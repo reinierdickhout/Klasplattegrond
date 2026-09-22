@@ -1,0 +1,7 @@
+# Consistente regeleindes ongeacht besturingssysteem
+* text=auto eol=lf
+
+# Binaire bestanden nooit aan regeleindes laten sleutelen
+*.png binary
+*.ico binary
+*.icns binary
