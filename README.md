@@ -12,22 +12,25 @@ Je hoeft zelf niets aan te maken: de app maakt `data/` en de JSON-bestanden zelf
 klas of les opslaat. Iedereen die dit project clonet start dus met een lege, eigen `data/`-map, ook al werkt een
 collega al met een gevulde. Zie [Gegevens (AVG)](#gegevens-avg) hieronder voor de precieze locatie.
 
-## Aan de slag
+## Downloaden en gebruiken (geen technische kennis nodig)
 
-Er zijn twee manieren om deze app te gebruiken, afhankelijk van wat je wilt.
+Je hoeft niets te installeren of te bouwen om de app te *gebruiken*:
 
-### A. Ik wil de app alleen gebruiken (geen ontwikkelaar)
+1. Ga naar de [Releases-pagina](https://github.com/reinierdickhout/Klasplattegrond/releases/latest) van deze repository.
+2. Download onder **Assets** het bestand `Klasplattegrond.exe`.
+3. Zet dat bestand in een eigen map, bijvoorbeeld `C:\Users\<jouw-naam>\Klasplattegrond\` — **niet** in OneDrive of een
+   andere gesynchroniseerde map (zie AVG hierboven).
+4. Dubbelklik de exe om te starten. Windows kan bij de eerste keer een "onbekende uitgever"-waarschuwing tonen
+   (SmartScreen) omdat het bestand niet digitaal ondertekend is — kies *Meer info* > *Toch uitvoeren*.
 
-Bouwen vereist Node.js en de Rust-toolchain (zie hieronder) — dat is best wat gedoe voor iemand die de app alleen
-wil *gebruiken*. Makkelijker:
+Bij de eerste opslag maakt de app zelf een `data`-map naast de exe aan; daar hoef je niets voor te doen.
 
-1. Vraag een collega die al heeft gebouwd (zie stap B) om de bestanden uit `C:\tauri-build\klasplattegrond\release\klasplattegrond.exe`
-   met je te delen (bijv. via Teams/OneDrive — het is één losse .exe, geen installer nodig).
-2. Zet die .exe in een eigen map, bijvoorbeeld `C:\Users\<jouw-naam>\Klasplattegrond\`.
-3. Start de exe. Bij de eerste opslag maakt de app zelf een `data`-map ernaast aan. Zet die map **niet** in OneDrive
-   of een andere gesynchroniseerde map (zie AVG hierboven).
+Staat er een nieuwere versie op de Releases-pagina dan die je hebt? Download die en vervang de oude .exe — je eigen
+`data`-map blijft gewoon staan, want die staat los van de exe.
 
-### B. Ik wil meebouwen / de broncode gebruiken
+## Meebouwen / de broncode gebruiken
+
+Dit heb je alleen nodig als je aan de app wilt *ontwikkelen*, niet om hem te gebruiken (zie hierboven).
 
 **Eenmalig installeren:**
 
@@ -55,7 +58,7 @@ npm run dev          # opent de app; live herladen bij codewijzigingen
 
 De eerste keer `npm run dev` duurt de Rust-compilatie een paar minuten; daarna is het snel.
 
-**Een standalone .exe bouwen** (voor jezelf of om met niet-technische collega's te delen, zie optie A):
+**Een standalone .exe bouwen:**
 
 ```
 npm run build
@@ -121,3 +124,17 @@ voor git simpelweg niet.
 
 Houd de npm-pakketten `@tauri-apps/*` op dezelfde minor-versie als de Rust-crates (`tauri` 2.10, `tauri-plugin-dialog` 2.6);
 bij een mismatch weigert `tauri build`. Bouw vanuit het echte projectpad, niet via een junction/symlink (rollup faalt dan).
+
+## Een nieuwe versie publiceren (voor de beheerder)
+
+Zo komt een nieuwe .exe op de [Releases-pagina](https://github.com/reinierdickhout/Klasplattegrond/releases) te staan,
+zodat collega's zonder git of build-tools de update kunnen downloaden:
+
+1. Verhoog het versienummer in `package.json` en `src-tauri/tauri.conf.json` (bv. `0.1.0` → `0.2.0`), commit en push.
+2. Bouw de exe: `npm run build`.
+3. Maak een git-tag en push die: `git tag -a v0.2.0 -m "Omschrijving van de wijzigingen"` en `git push origin v0.2.0`.
+4. Ga op GitHub naar **Releases > Draft a new release**, kies de zojuist gepushte tag, geef de release een titel/omschrijving,
+   en sleep `C:\tauri-build\klasplattegrond\release\klasplattegrond.exe` in het vak *Attach binaries* — hernoem het bestand
+   daar naar `Klasplattegrond.exe`. Klik op **Publish release**.
+
+De link naar `/releases/latest` in dit document wijst dan automatisch naar de nieuwste versie.
